@@ -1,0 +1,51 @@
+{% extends "API_app/padre.html" %}
+{% load static %}
+{% block contenidoVar %}
+
+<h1> Registre su Curso </h1>
+
+{% if formulario_curso.errors %}
+
+   <p  style='color:red;'> Datos invalidos </p>
+
+   {% endif %}
+
+   <form action="" method="POST">{% csrf_token %}
+     <table>
+         {{ formulario_curso.as_table}}
+     </table>
+
+     <br><input type = "submit" value="Enviar">
+   </form>
+
+<h1>{{mensaje}}</h1>
+
+<br><h4>Buscar Curso por ID:</h4>
+
+    <form action="/API/buscar" method="GET">
+        <input type="number" name="id_curso" id="id_curso">
+        <input type="submit" value="buscar">
+    </form>
+
+    {% if cursos %}
+
+    <p>Buscando el curso: {{id_curso}}</p>
+
+    <ul>
+	{% for curso in cursos %}
+		<li> {{curso.curso}} </li>
+		<li> {{curso.id_curso}} </li>
+	{% endfor %}
+
+    </ul>
+
+    {% else %}
+    <p>No hay datos con esa descripción.</p>
+
+    {% endif %}
+
+    <p style="color: red;">{{respuesta}}</p>
+
+
+
+{% endblock %}

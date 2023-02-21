@@ -1,0 +1,22 @@
+{% extends "API_app/padre.html" %}
+{% load static %}
+{% block contenidoVar %}
+
+<h1> Registre su Entrega </h1>
+<p> Ingrese Titulo y fecha de entrega</p>
+
+{% if formulario_entregables.errors %}
+
+   <p style='color:red;'> Datos invalidos </p>
+
+   {% endif %}
+
+   <form action="" method="POST">{% csrf_token %}
+     <table>
+         {{ formulario_entregables.as_table}}
+     </table>
+
+     <br><br><input type = "submit" value="Enviar">
+   </form>
+
+{% endblock %}
